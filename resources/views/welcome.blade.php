@@ -2,7 +2,12 @@
 
 @section('content')
     @if (Auth::check())
-        {{ Auth::user()->name }}
+        <div class="row">
+            <div class="col-sm-12">
+                {{-- 投稿一覧 --}}
+                @include('microposts.microposts')
+            </div>
+        </div>
     @else
         <div class="center jumbotron">
             <div class="text-center">
