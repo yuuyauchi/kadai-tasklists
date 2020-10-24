@@ -69,4 +69,23 @@ class MicropostsController extends Controller
             'micropost' => $micropost,    
         ]);
     }
+    public function edit($id)
+    {
+        $micropost = \App\Micropost::findOrFail($id);
+        return view('microposts.edit',[
+            'micropost' => $micropost,    
+        ]);
+    }
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'status' => 'required|max:10',
+            'content' => 'required|max:255',
+        ]);
+        $micropost = \App\Micropost::findOrFail($id);
+        $micropost->status = $request->status;
+        $micropost->content = $request->content;
+        $micropost->save();
+        return redirect('/');
+    }
 }
