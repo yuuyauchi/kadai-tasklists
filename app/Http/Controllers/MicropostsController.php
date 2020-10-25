@@ -65,9 +65,13 @@ class MicropostsController extends Controller
     public function show($id)
     {
         $micropost = \App\Micropost::findOrFail($id);
-        return view('microposts.show',[
-            'micropost' => $micropost,    
-        ]);
+        if (\Auth::id() === $micropost->user_id) {
+            return view('microposts.show',[
+                'micropost' => $micropost,    
+            ]);
+        }else{
+            return redirect('/');
+        }
     }
     public function edit($id)
     {
