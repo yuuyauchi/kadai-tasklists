@@ -10,6 +10,7 @@
                 <tr>
                     <th>id</th>
                     <th>タスク</th>
+                    <th>タスク内容</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +23,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $tasks->links() }}
     @endif
     {!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'btn btn-primary']) !!}
 @endsection
